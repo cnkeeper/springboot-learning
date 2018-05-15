@@ -1,0 +1,6 @@
+server:
+  port: 9000
+
+#×Ô¶¨ÒåÅäÖÃ
+project:
+  version: 1.0.0

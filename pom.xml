@@ -9,7 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-            <spring-boot-version>1.5.1.RELEASE</spring-boot-version>
+        <spring-boot-version>1.5.1.RELEASE</spring-boot-version>
+        <!--重新定义jetty的版本，解决 missing EmbeddedServletContainerFactory bean.报错-->
+        <jetty.version>9.2.21.v20170120</jetty.version>
     </properties>
 
     <parent>
@@ -17,10 +19,39 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>${spring-boot-version}</version>
     </parent>
+
+    <!--启动容器由默认的tomcat改为jetty-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--jetty依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+
+        <!---->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
