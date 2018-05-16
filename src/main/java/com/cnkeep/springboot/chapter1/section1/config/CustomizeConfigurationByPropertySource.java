@@ -18,7 +18,7 @@ public class CustomizeConfigurationByPropertySource {
     public static String author;
 
     /*依赖注入自定义的配置文件，不存在时默认值为hp*/
-    @Value("${project.author:hp}")
+    //@Value("${project.author:hp}")
     public void setAuthor(String author) {
         CustomizeConfigurationByPropertySource.author = author;
     }

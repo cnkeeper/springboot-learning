@@ -1,6 +1,25 @@
 server:
   port: 9000
 
-#◊‘∂®“Â≈‰÷√
+datasource:
+  master:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zhiyun_os??useSSL=false&autoReconnect=true&sessionVariables=FOREIGN_KEY_CHECKS=0&useUnicode=yes&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    maxTotal: 200
+    maxIdle: 8
+    minIdle: 8
+    initialSize: 10
+    maxWaitMillis: 3000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+#Ëá™ÂÆö‰πâÈÖçÁΩÆ
 project:
   version: 1.0.0
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:com/cnkeep/springboot/chapter1/section1/mapper/*.xml

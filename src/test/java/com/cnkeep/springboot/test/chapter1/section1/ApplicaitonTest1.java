@@ -3,6 +3,8 @@ package com.cnkeep.springboot.test.chapter1.section1;
 import com.cnkeep.springboot.chapter1.section1.Application;
 import com.cnkeep.springboot.chapter1.section1.config.CustomizeConfigurationByConfigurationProperty;
 import com.cnkeep.springboot.chapter1.section1.config.CustomizeConfigurationByPropertySource;
+import com.cnkeep.springboot.chapter1.section1.domain.entity.User;
+import com.cnkeep.springboot.chapter1.section1.domain.repo.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * 测试主体
@@ -27,6 +31,9 @@ public class ApplicaitonTest1 {
     @Autowired
     protected ApplicationContext context;
 
+    @Autowired
+    private UserRepository userRepository;
+
     /**
      * 采用@PropertySource注解获取配置文件中的配置
      */
@@ -41,5 +48,11 @@ public class ApplicaitonTest1 {
     @Test
     public void testConfigurationProperty() {
         LOGGER.info("version:{}", CustomizeConfigurationByConfigurationProperty.version);
+    }
+
+    @Test
+    public void testJdbc() {
+        List<User> list = userRepository.list();
+        LOGGER.info(list.toString());
     }
 }
