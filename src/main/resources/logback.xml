@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration scan="true"  debug="false">
     <!--定义日志文件生成的根路径，这里采用的是相对路径-->
     <property name="logDir" value="./logs"/>
 

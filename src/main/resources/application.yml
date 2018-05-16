@@ -1,6 +1,5 @@
 server:
   port: 9000
-
 datasource:
   master:
     driver: com.mysql.jdbc.Driver
@@ -23,3 +22,13 @@ project:
 mybatis:
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:com/cnkeep/springboot/chapter1/section1/mapper/*.xml
+
+#健康监控
+management:
+  security:
+    enabled: false
+security:
+  user:
+    name: admin
+    password: 123456
+
