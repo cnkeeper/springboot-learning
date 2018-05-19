@@ -27,9 +27,17 @@ mybatis:
 #健康监控
 management:
   security:
-    enabled: false
+    enabled: true
 security:
   user:
     name: admin
     password: 123456
 
+shiro:
+    loginUrl: /login
+    loginVerificationCode: false
+    filters:
+        /login: anonymous
+        /logout: anonymous
+        /publics/**: anonymous
+        /**: anonymous
