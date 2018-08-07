@@ -55,7 +55,7 @@
     <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
     <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" value="DEBUG" />
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
         <appender-ref ref="rollingAppender"/>

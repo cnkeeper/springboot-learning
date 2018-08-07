@@ -30,10 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class ApplicaitonTest {
+public class WebApplicaitonTest {
     private MockMvc mvc;
 
-    private final Logger LOGGER = LoggerFactory.getLogger(ApplicaitonTest.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(WebApplicaitonTest.class);
 
     @Before
     public void setUp() throws Exception {

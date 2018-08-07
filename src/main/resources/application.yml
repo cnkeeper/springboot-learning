@@ -1,6 +1,8 @@
 server:
-  port: 9000
+  port: 9090
   context-path: /context
+  display-name: cnkeep
+
 datasource:
   master:
     driver: com.mysql.jdbc.Driver
@@ -41,3 +43,5 @@ shiro:
         /logout: anonymous
         /publics/**: anonymous
         /**: anonymous
+logging:
+  config: classpath:logback.xml

@@ -7,7 +7,7 @@ package com.cnkeep.springboot.chapter1.section1.domain.entity;
  * @version 0.0.0
  * @date 2018/5/16
  */
-public class User {
+public class User extends BaseEntity{
     private String id;
     private String name;
 
