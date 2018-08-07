@@ -2,6 +2,7 @@ server:
   port: 9090
   context-path: /context
   display-name: cnkeep
+  servlet-path: /service/*
 
 datasource:
   master:
@@ -42,6 +43,7 @@ shiro:
         /login: anonymous
         /logout: anonymous
         /publics/**: anonymous
+        /swagger.json: anonymous
         /**: anonymous
 logging:
   config: classpath:logback.xml

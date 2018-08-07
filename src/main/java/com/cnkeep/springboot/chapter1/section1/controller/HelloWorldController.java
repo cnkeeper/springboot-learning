@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 测试
+ * 测试 springmvc
  *
  * @author <a href="1348555156@qq.com">LeiLi.Zhang</a>
  * @version 0.0.0

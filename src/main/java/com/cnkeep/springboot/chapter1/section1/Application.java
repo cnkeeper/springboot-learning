@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * springboot 启动入口
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.cnkeep.springboot.chapter1.section1.*")
+@EnableSwagger2
 public class Application implements ApplicationContextAware {
     public static ApplicationContext applicationContext;
 
@@ -30,5 +32,6 @@ public class Application implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         Application.applicationContext = applicationContext;
     }
+
 }
 

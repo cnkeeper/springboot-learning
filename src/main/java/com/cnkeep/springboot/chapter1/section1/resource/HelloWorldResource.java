@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import com.cnkeep.springboot.chapter1.section1.Application;
 import com.cnkeep.springboot.chapter1.section1.domain.entity.User;
+import io.swagger.annotations.*;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,7 @@ import java.util.Map;
  */
 @Component
 @Path("hello")
+@Api(value="Jersey-HelloWorld API 列表")
 public class HelloWorldResource {
 
     Logger logger = LoggerFactory.getLogger(HelloWorldResource.class);
@@ -66,6 +68,12 @@ public class HelloWorldResource {
     @GET
     @Path("get/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "根据id查询信息",notes = "查询信息",response = User.class)
+    @ApiImplicitParam(name = "id",value = "id",dataType = "String",paramType = "query",example = "1112")
+    @ApiResponses({
+            @ApiResponse(code=400,message = "请求参数没有填好"),
+            @ApiResponse(code=404,message="请求路径没有找到")
+    })
     public User getUserById(@PathParam("id") Integer id) {
         System.out.println(id);
         return INIT_DATA.get(id);

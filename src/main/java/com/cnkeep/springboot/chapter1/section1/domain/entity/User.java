@@ -1,5 +1,7 @@
 package com.cnkeep.springboot.chapter1.section1.domain.entity;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 描述~
  *
@@ -8,6 +10,7 @@ package com.cnkeep.springboot.chapter1.section1.domain.entity;
  * @date 2018/5/16
  */
 public class User extends BaseEntity{
+    @NotNull
     private String id;
     private String name;
 
