@@ -19,6 +19,14 @@ datasource:
     testWhileIdle: true
     testOnBorrow: false
     testOnReturn: false
+
+#druid连接池监控配置
+druid:
+  monitor:
+    servlet-path: /druid-ui/* #监控地址
+    username: druid
+    password: druid
+
 #自定义配置
 project:
   version: 1.0.0
