@@ -52,29 +52,5 @@ public class JserseyConfiguration extends ResourceConfig {
         config.setResourcePackage("com.cnkeep.springboot.chapter1.section1.resource");
         config.setPrettyPrint(true);
         config.setScan(true);
-        Info info = new Info()
-                .title("Swagger Petstore")
-                .description("This is a sample server Petstore server.  You can find out more about Swagger " +
-                        "at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, " +
-                        "you can use the api key `special-key` to test the authorization filters.")
-                .termsOfService("http://swagger.io/terms/")
-                .contact(new Contact()
-                        .email("apiteam@swagger.io"))
-                .license(new License()
-                        .name("Apache 2.0")
-                        .url("http://www.apache.org/licenses/LICENSE-2.0.html"));
-        Swagger swagger = new Swagger().info(info);
-        swagger.externalDocs(new ExternalDocs("Find out more about Swagger", "http://swagger.io"));
-        swagger.securityDefinition("api_key", new ApiKeyAuthDefinition("api_key", In.HEADER));
-        swagger.securityDefinition("petstore_auth",
-                new OAuth2Definition()
-                        .implicit("http://petstore.swagger.io/api/oauth/dialog")
-                        .scope("read:pets", "read your pets")
-                        .scope("write:pets", "modify pets in your account"));
-        swagger.tag(new Tag()
-                .name("user")
-                .description("Operations about user")
-                .externalDocs(new ExternalDocs("Find out more about our store", "http://swagger.io")));
-        config.configure(swagger);
     }
 }
