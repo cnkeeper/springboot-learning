@@ -1,4 +1,4 @@
-package com.cnkeep.springboot.chapter1.section1.db.config;
+package com.cnkeep.springboot.chapter1.section1.config.db;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

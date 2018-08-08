@@ -1,4 +1,4 @@
-package com.cnkeep.springboot.chapter1.section1.config;
+package com.cnkeep.springboot.chapter1.section1.config.jersey;
 
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;

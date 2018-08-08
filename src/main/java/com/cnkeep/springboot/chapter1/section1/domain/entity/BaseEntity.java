@@ -1,5 +1,7 @@
 package com.cnkeep.springboot.chapter1.section1.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * 描述~
  *
@@ -8,6 +10,12 @@ package com.cnkeep.springboot.chapter1.section1.domain.entity;
  * @date 2018/5/18
  */
 public abstract class BaseEntity implements Entity{
+    @JsonProperty("access_token")
+    private String accessToken;
+
+    @JsonProperty("expired_in")
+    private long expiredIn;
+
     private String extraAttr;
 
     public String getExtraAttr() {

@@ -1,4 +1,4 @@
-package com.cnkeep.springboot.chapter1.section1.config;
+package com.cnkeep.springboot.chapter1.section1.config.druidmonitor;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;

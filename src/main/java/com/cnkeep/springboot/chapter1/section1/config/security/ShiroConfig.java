@@ -1,4 +1,4 @@
-package com.cnkeep.springboot.chapter1.section1.security.config;
+package com.cnkeep.springboot.chapter1.section1.config.security;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

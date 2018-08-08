@@ -1,8 +1,8 @@
 package com.cnkeep.springboot.test.chapter1.section1;
 
 import com.cnkeep.springboot.chapter1.section1.Application;
-import com.cnkeep.springboot.chapter1.section1.config.CustomizeConfigurationByConfigurationProperty;
-import com.cnkeep.springboot.chapter1.section1.config.CustomizeConfigurationByPropertySource;
+import com.cnkeep.springboot.chapter1.section1.config.customize.CustomizeConfigurationByConfigurationProperty;
+import com.cnkeep.springboot.chapter1.section1.config.customize.CustomizeConfigurationByPropertySource;
 import com.cnkeep.springboot.chapter1.section1.domain.entity.User;
 import com.cnkeep.springboot.chapter1.section1.domain.repo.UserRepository;
 import org.junit.Test;
@@ -10,10 +10,8 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;

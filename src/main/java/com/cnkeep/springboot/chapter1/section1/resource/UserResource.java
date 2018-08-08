@@ -1,5 +1,6 @@
 package com.cnkeep.springboot.chapter1.section1.resource;
 
+import com.cnkeep.springboot.chapter1.section1.domain.entity.BaseEntity;
 import com.cnkeep.springboot.chapter1.section1.domain.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -7,10 +8,7 @@ import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.InputStream;
@@ -61,10 +59,11 @@ public class UserResource {
         return Response.ok().entity("").build();
     }
 
-    @GET
-    @Path("/html/*")
-    @Produces(MediaType.TEXT_HTML)
-    public InputStream html(){
-        return Thread.currentThread().getContextClassLoader().getResourceAsStream("swagger-ui/index.html");
+    @POST
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public BaseEntity html(){
+        return null;
     }
 }

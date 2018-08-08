@@ -1,4 +1,4 @@
-package com.cnkeep.springboot.chapter1.section1.config;
+package com.cnkeep.springboot.chapter1.section1.config.swagger2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 @Deprecated
-public class Swagger2Configuration {
+public class SpringMvcSwagger2UIConfiguration {
     @Bean
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()

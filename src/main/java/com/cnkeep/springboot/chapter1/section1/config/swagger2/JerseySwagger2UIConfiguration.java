@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018/8/8
  */
 @Configuration
-public class Swagger2UIConfiguration {
+public class JerseySwagger2UIConfiguration {
 
     /**
      * 
