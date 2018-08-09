@@ -11,6 +11,7 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.deploy>deploy</project.deploy>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <boot-version>1.5.1.RELEASE</boot-version>
         <!--重新定义jetty的版本，解决 missing EmbeddedServletContainerFactory bean.报错-->
@@ -139,9 +140,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-       <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-security</artifactId>-->
         <!--</dependency>-->
         <!-- shiro start-->
         <dependency>
@@ -167,6 +168,19 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -181,6 +195,128 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.deploy}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <!-- 解决二进制文件被转码导致不可用的问题-->
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>data</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <outputDirectory>${project.build.directory}/${project.deploy}/conf</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/</directory>
+                                    <includes>
+                                        <include>*.yml</include>
+                                        <include>log4j2.xml</include>
+                                        <include>logback.xml</include>
+                                        <include>*.conf</include>
+                                        <include>*.data</include>
+                                        <include>banner.txt</include>
+                                        <include>*.properties</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-sh</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <outputDirectory>${project.build.directory}/${project.deploy}/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/</directory>
+                                    <includes>
+                                        <include>*.sh</include>
+                                        <include>*.bat</include>
+                                        <include>*.txt</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>jarexclude</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.deploy}/lib</outputDirectory>
+                            <excludes>
+                                <exclude>*.yml</exclude>
+                                <exclude>log4j2.xml</exclude>
+                                <exclude>*.conf</exclude>
+                                <exclude>*.sh</exclude>
+                                <exclude>*.data</exclude>
+                                <exclude>*.bat</exclude>
+                                <exclude>*.txt</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--配置生成源码包-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
