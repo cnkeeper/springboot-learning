@@ -3,13 +3,9 @@ package com.cnkeep.springboot.chapter1.section1.config.jersey;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
-import io.swagger.models.*;
-import io.swagger.models.auth.ApiKeyAuthDefinition;
-import io.swagger.models.auth.In;
-import io.swagger.models.auth.OAuth2Definition;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -22,10 +18,12 @@ import javax.annotation.PostConstruct;
  * @date 2018/5/18
  */
 @Configuration
-public class JserseyConfiguration extends ResourceConfig {
+public class JserseyConfiguration1 {
 
     @Value("${server.context-path:/}")
     private String contextPath;
+    @Autowired
+    private ResourceConfig resourceConfig;
 
     @PostConstruct
     public void init() {
@@ -33,12 +31,20 @@ public class JserseyConfiguration extends ResourceConfig {
         this.configureSwagger();
     }
 
-    public JserseyConfiguration() {
-        packages("com.cnkeep.springboot.chapter1.section1");
-    }
 
     private void configureSwagger() {
         // Available at localhost:port/swagger.json
-        packages("com.cnkeep.springboot.chapter1.section1.resource");
+        resourceConfig.register(ApiListingResource.class).
+                register(SwaggerSerializers.class);
+        BeanConfig config = new BeanConfig();
+        config.setConfigId("springboot-jersey-swagger-example");
+        config.setTitle("Spring Boot + Jersey + Swagger + Example");
+        config.setVersion("v1");
+        config.setContact("LeiLi.Zhang");
+        config.setSchemes(new String[]{"http"/*, "https"*/});
+        config.setBasePath(contextPath);
+        config.setResourcePackage("com.cnkeep.springboot.chapter1.section1.resource");
+        config.setPrettyPrint(true);
+        config.setScan(true);
     }
 }

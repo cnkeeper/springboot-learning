@@ -1,7 +1,5 @@
 package com.cnkeep.springboot.chapter1.section1.config.swagger2;
 
-import com.alibaba.druid.support.http.WebStatFilter;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,33 +11,19 @@ import org.springframework.context.annotation.Configuration;
  * @version 0.0.0
  * @date 2018/8/8
  */
-@Configuration
+//@Configuration
 public class JerseySwagger2UIConfiguration {
 
     /**
      * 
      * @return
      */
-    @Bean
+//    @Bean
     public ServletRegistrationBean registrationBean() {
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean();
 //        servletRegistrationBean.setServlet(new SwaggerResourceServlet());
         servletRegistrationBean.setServlet(new swagger.http.servlet.SwaggerResourceServlet());
         servletRegistrationBean.addUrlMappings("/swagger2-ui/*");
         return servletRegistrationBean;
-    }
-
-    /**
-     * 注册FilterRegistrationBean
-     * @return
-     */
-//    @Bean
-    public FilterRegistrationBean druidStatFilter() {
-        FilterRegistrationBean bean = new FilterRegistrationBean(new WebStatFilter());
-        //添加过滤规则.
-        bean.addUrlPatterns("/*");
-        //添加不需要忽略的格式信息.
-        bean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid2/*");
-        return bean;
     }
 }

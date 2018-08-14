@@ -63,10 +63,14 @@
         <!-- swagger 静态资源 -->
         <dependency>
             <groupId>com.cnkeep.cn</groupId>
-            <artifactId>swagger-ui</artifactId>
-            <version>0.0.1</version>
+            <artifactId>swagger2ui</artifactId>
+            <version>1.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.cnkeep.cn</groupId>
+            <artifactId>spring-boot-swagger2ui-autoconfiguration</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <!-- springboot 集成 swagger 实现SpringMVC Restful 開始 -->
         <!-- 解决 springfox-swagger 依赖swagger版本过低问题 -->
@@ -187,6 +191,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
+            <!-- 打包编译配置  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -197,6 +202,7 @@
                 </configuration>
             </plugin>
 
+            <!-- 相关依赖打包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -217,6 +223,7 @@
                 </executions>
             </plugin>
 
+            <!-- 资源文件打包配置 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -277,6 +284,7 @@
                 </executions>
             </plugin>
 
+            <!-- 打包配置 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

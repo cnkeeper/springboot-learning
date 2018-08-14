@@ -48,4 +48,5 @@ public class WebApplicaitonTest {
         MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/hello/test").accept(MediaType.APPLICATION_JSON)).andReturn();
         LOGGER.info("" + result.getResponse().getStatus());
     }
+
 }
