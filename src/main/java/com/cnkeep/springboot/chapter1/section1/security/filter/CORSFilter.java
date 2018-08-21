@@ -29,6 +29,16 @@ public class CORSFilter implements Filter {
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Methods", "*");
 		response.setHeader("Access-Control-Allow-Headers", "*");
+
+		//================================================================== httponly cookie
+		//设置cookie
+		response.addHeader("Set-Cookie", "uid=112; Path=/; HttpOnly");
+		//设置多个cookie
+		response.addHeader("Set-Cookie", "uid=112; Path=/; HttpOnly");
+		response.addHeader("Set-Cookie", "timeout=30; Path=/test; HttpOnly");
+		//设置https的cookie
+		response.addHeader("Set-Cookie", "uid=112; Path=/; Secure; HttpOnly");
+
 		chain.doFilter(req, res);
 	}
 
