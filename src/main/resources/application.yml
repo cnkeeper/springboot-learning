@@ -1,8 +1,8 @@
 server:
   port: 9090
-  context-path: /context
+  context-path: /context #相当于应用的名称
   display-name: cnkeep
-  servlet-path: /service/*
+  servlet-path: /service/* #DispatcherServelt的映射路径
 
 datasource:
   master:
