@@ -4,9 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.cnkeep</groupId>
-		<artifactId>springboot-study</artifactId>
+		<artifactId>springboot-learning</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.cnkeep</groupId>
 	<artifactId>springboot-redis</artifactId>
