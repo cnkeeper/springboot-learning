@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: springboot-redis
+  redis:
+    # 其他配置信息有缺省
+    host: 172.16.22.135
+    port: 6379
+    password: cnkeep
+    timeout: 500
+    lettuce:
+      pool:
+        min-idle: 1
+        max-idle: 8
+        max-active: 8
