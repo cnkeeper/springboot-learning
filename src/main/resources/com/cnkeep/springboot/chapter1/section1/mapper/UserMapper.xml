@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="com.cnkeep.springboot.chapter1.section1.mapper.UserMapper">
-    <select id="list" resultType="User">
-        SELECT * from user;
-    </select>
-</mapper>

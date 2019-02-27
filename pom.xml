@@ -6,169 +6,47 @@
 
     <groupId>com.cnkeep</groupId>
     <artifactId>springboot-study</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>springboot-redis</module>
+        <module>springboot-web</module>
+    </modules>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.deploy>deploy</project.deploy>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <boot-version>1.5.1.RELEASE</boot-version>
-        <!--重新定义jetty的版本，解决 missing EmbeddedServletContainerFactory bean.报错-->
-        <jetty.version>9.2.21.v20170120</jetty.version>
-        <swagger.version>1.5.12</swagger.version>
-        <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
+        <boot-version>2.1.3.RELEASE</boot-version>
     </properties>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.1.RELEASE</version>
-    </parent>
+    <!-- 不采用继承parent方式 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-    <!--启动容器由默认的tomcat改为jetty-->
+
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jersey</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-jersey2-jaxrs</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <!-- swagger 静态资源 -->
-        <dependency>
-            <groupId>com.cnkeep.cn</groupId>
-            <artifactId>swagger2ui</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cnkeep.cn</groupId>
-            <artifactId>spring-boot-swagger2ui-autoconfiguration</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <!-- springboot 集成 swagger 实现SpringMVC Restful 開始 -->
-        <!-- 解决 springfox-swagger 依赖swagger版本过低问题 -->
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox-swagger2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox-swagger2.version}</version>
-        </dependency>
-        <!-- springboot 集成 swagger 实现SpringMVC Restful 結束 -->
-
-
-        <!--jetty依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-
-        </dependency>
-
         <!--junit-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
-        <!--jdbc start-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>tomcat-jdbc</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!--mybatis-->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <!--mysql-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!--阿里druid数据库链接依赖-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.5</version>
-        </dependency>
-        <!--jdbc end-->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--</dependency>-->
-        <!-- shiro start-->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.4.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-ehcache</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <!-- shiro end-->
-
-        <!-- jwt start-->
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>3.3.0</version>
-        </dependency>
-        <!-- jwt end-->
     </dependencies>
 
     <build>
@@ -190,7 +68,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <!-- 打包编译配置  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -245,7 +122,7 @@
                             <encoding>UTF-8</encoding>
                             <outputDirectory>${project.build.directory}/${project.deploy}/conf</outputDirectory>
                             <resources>
-                                <resource>
+                                <com.github.cnkeep.web.resource>
                                     <directory>src/main/resources/</directory>
                                     <includes>
                                         <include>*.yml</include>
@@ -256,7 +133,7 @@
                                         <include>banner.txt</include>
                                         <include>*.properties</include>
                                     </includes>
-                                </resource>
+                                </com.github.cnkeep.web.resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -270,14 +147,14 @@
                             <encoding>UTF-8</encoding>
                             <outputDirectory>${project.build.directory}/${project.deploy}/</outputDirectory>
                             <resources>
-                                <resource>
+                                <com.github.cnkeep.web.resource>
                                     <directory>src/main/resources/</directory>
                                     <includes>
                                         <include>*.sh</include>
                                         <include>*.bat</include>
                                         <include>*.txt</include>
                                     </includes>
-                                </resource>
+                                </com.github.cnkeep.web.resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -327,7 +204,5 @@
                 </executions>
             </plugin>
         </plugins>
-
-
     </build>
 </project>
