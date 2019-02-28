@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ComponentScan;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * springboot 启动入口
@@ -26,6 +28,9 @@ public class Application implements ApplicationContextAware {
     public static void main(String[] args) {
 
         SpringApplication application = new SpringApplication(Application.class);
+        // 这里一个添加自定义文件，或者使用@ImportResource注解注入
+        Set<String> resources = new HashSet<>();
+        application.setSources(resources);
         application.run(args);
 
 //        new SpringApplicationBuilder()

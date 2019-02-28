@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.cnkeep.web.util.json.JsonUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -81,7 +82,7 @@ public class JWTUtil {
         String token = JWTUtil.token("zhang我", "1234565");
         System.out.println(token);
         DecodedJWT jwt = JWT.decode(token);
-        System.out.println(JSONUtil.serialize(jwt));
+        System.out.println(JsonUtil.serialize(jwt));
         System.out.println(jwt.getClaim("username").asString());
     }
 }
