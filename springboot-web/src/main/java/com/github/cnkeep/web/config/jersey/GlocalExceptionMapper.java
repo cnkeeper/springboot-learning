@@ -1,6 +1,6 @@
 package com.github.cnkeep.web.config.jersey;
 
-import com.github.cnkeep.web.domain.entity.JsonResp;
+import com.github.cnkeep.web.domain.entity.VO.JsonResp;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;

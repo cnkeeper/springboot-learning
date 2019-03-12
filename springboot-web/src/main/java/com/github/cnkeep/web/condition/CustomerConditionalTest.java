@@ -1,7 +1,7 @@
 package com.github.cnkeep.web.condition;
 
-import com.github.cnkeep.web.domain.entity.BaseEntity;
-import com.github.cnkeep.web.domain.entity.User;
+import com.github.cnkeep.web.domain.entity.DO.BaseEntity;
+import com.github.cnkeep.web.domain.entity.DO.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;

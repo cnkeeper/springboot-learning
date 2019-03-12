@@ -1,6 +1,6 @@
 package com.github.cnkeep.web.domain.repo;
 
-import com.github.cnkeep.web.domain.entity.User;
+import com.github.cnkeep.web.domain.entity.DO.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

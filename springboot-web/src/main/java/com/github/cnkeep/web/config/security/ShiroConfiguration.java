@@ -52,7 +52,7 @@ import java.util.Map;
  * <!-- 安全认证过滤器 -->
  * <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
  * <property name="securityManager" ref="securityManager" /><!--
- * <property name="loginUrl" value="${cas.server.url}?com.github.cnkeep.web.service=${cas.project.url}${adminPath}/cas" /> -->
+ * <property name="loginUrl" value="${cas.server.url}?com.github.cnkeep.web.com.github.cnkeep.service=${cas.project.url}${adminPath}/cas" /> -->
  * <property name="loginUrl" value="${adminPath}/login" />
  * <property name="successUrl" value="${adminPath}?login" />
  * <property name="filters">

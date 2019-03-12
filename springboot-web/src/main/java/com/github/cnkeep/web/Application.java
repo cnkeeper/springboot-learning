@@ -1,6 +1,7 @@
 package com.github.cnkeep.web;
 
 
+import com.github.cnkeep.web.listener.ApplicationContextInitListener;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -31,6 +32,8 @@ public class Application implements ApplicationContextAware {
         // 这里一个添加自定义文件，或者使用@ImportResource注解注入
         Set<String> resources = new HashSet<>();
         application.setSources(resources);
+
+        application.addInitializers(new ApplicationContextInitListener());
         application.run(args);
 
 //        new SpringApplicationBuilder()
