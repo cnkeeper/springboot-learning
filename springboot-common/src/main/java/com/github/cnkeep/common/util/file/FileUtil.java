@@ -22,7 +22,7 @@ public class FileUtil {
 
     public static final FastDateFormat fileFormat = FastDateFormat.getInstance("yyyyMMddHHmmssSSS");
 
-    public final static Map<String, String> FILE_TYPE_MAP = new HashMap<String, String>();
+    final static Map<String, String> FILE_TYPE_MAP = new HashMap<String, String>();
 
     static {
         /**
@@ -174,7 +174,8 @@ public class FileUtil {
         String folder = rootFolder + sb.toString();
         File temp = new File(folder);
         if (!temp.exists()) {
-            temp.mkdirs();
+            boolean mkdirsSuccess = temp.mkdirs();
+            throw new RuntimeException("Fail to create dir"+temp);
         }
 
         if (StringUtils.isBlank(fileName)) {

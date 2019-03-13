@@ -63,7 +63,7 @@ public class JsonUtil {
      * @throws JsonMappingException
      * @throws IOException
      */
-    public static <T> T deserialize(String content,Class<T> valueType) throws JsonParseException, JsonMappingException, IOException{
+    public static <T> T deserialize(String content,Class<T> valueType) throws IOException{
         return mapper.readValue(content, valueType);
     }
 
@@ -76,7 +76,7 @@ public class JsonUtil {
      * @throws JsonMappingException
      * @throws IOException
      */
-    public static <T> T deserializeFromByte(byte[] content,Class<T> valueType) throws JsonParseException, JsonMappingException, IOException{
+    public static <T> T deserializeFromByte(byte[] content,Class<T> valueType) throws IOException{
         return mapper.readValue(content, valueType);
     }
 }

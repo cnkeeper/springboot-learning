@@ -5,6 +5,7 @@ import com.github.cnkeep.common.util.Assert;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.Charset;
 
 /**
  * 描述: AES加密工具, 此工具一般与Base64Util搭配使用
@@ -18,11 +19,12 @@ public class AesUtil {
     private static final String KEY_ALGORITHM = "AES";
     // Algorithm/Mode/Padding
     private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding";
-
+    /** 默认编码格式utf-8*/
+    private static final Charset DEFAULT_CHARSET_UTF8 = Charset.forName("utf-8");
     /**
      * 128 bit IV, don't change this value unless you're sure of what you're doing.
      */
-    private static final IvParameterSpec IV = new IvParameterSpec("q7gMNtbWoxJvyiHi".getBytes());
+    private static final IvParameterSpec IV = new IvParameterSpec("q7gMNtbWoxJvyiHi".getBytes(DEFAULT_CHARSET_UTF8));
 
     /**
      * Encrypt the string
@@ -35,7 +37,7 @@ public class AesUtil {
         Assert.notNull(secretKey, "secretKey can't be null");
         Assert.isTrue(secretKey.length() == 16, "secretKey length must be 16 characters");
 
-        SecretKeySpec skeySpec = new SecretKeySpec(secretKey.getBytes(), KEY_ALGORITHM);
+        SecretKeySpec skeySpec = new SecretKeySpec(secretKey.getBytes(DEFAULT_CHARSET_UTF8), KEY_ALGORITHM);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, IV);
 
@@ -53,7 +55,7 @@ public class AesUtil {
         Assert.notNull(secretKey, "secretKey can't be null");
         Assert.isTrue(secretKey.length() == 16, "secretKey length must be 16 characters");
 
-        SecretKeySpec skeySpec = new SecretKeySpec(secretKey.getBytes(), KEY_ALGORITHM);
+        SecretKeySpec skeySpec = new SecretKeySpec(secretKey.getBytes(DEFAULT_CHARSET_UTF8), KEY_ALGORITHM);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, skeySpec, IV);
 

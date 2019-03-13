@@ -1,8 +1,9 @@
 package util.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.cnkeep.web.util.entity.JsonEntity;
+import com.github.cnkeep.common.util.json.JsonUtil;
 import org.junit.Test;
+import util.entity.JsonEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

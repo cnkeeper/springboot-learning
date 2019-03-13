@@ -1,6 +1,7 @@
 package com.github.cnkeep.common.util.codec;
 
 import javax.crypto.Cipher;
+import java.nio.charset.Charset;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -18,6 +19,9 @@ import java.util.Base64;
 public class RSAUtil {
     public static final String ENCRYPTIONAL_GORITHM = "RSA";
 
+    /** 默认编码格式utf-8*/
+    private static final Charset DEFAULT_CHARSET_UTF8 = Charset.forName("utf-8");
+
     /**
      * 根据RSA公钥串返回PublicKey
      * @param base64PublicKey
@@ -26,7 +30,7 @@ public class RSAUtil {
      */
     public static PublicKey getPublicKey(String base64PublicKey) throws Exception {
         // 1. 先通过Base64解码
-        byte[] publicKeyBytes = Base64.getDecoder().decode(base64PublicKey.getBytes());
+        byte[] publicKeyBytes = Base64.getDecoder().decode(base64PublicKey.getBytes(DEFAULT_CHARSET_UTF8));
 
         // 2. 解码后的数据封装成PublicKey
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKeyBytes);
@@ -61,7 +65,7 @@ public class RSAUtil {
         // 2. 执行加密
         Cipher encryptCipher = Cipher.getInstance("RSA");
         encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes());
+        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes(DEFAULT_CHARSET_UTF8));
 
         // 3. Base64编码
         byte[] encodedBase64Bytes = Base64.getEncoder().encode(encryptedBytes);
@@ -76,7 +80,7 @@ public class RSAUtil {
         // 2. 执行加密
         Cipher encryptCipher = Cipher.getInstance("RSA");
         encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes());
+        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes(DEFAULT_CHARSET_UTF8));
 
         return encryptedBytes;
     }
@@ -88,7 +92,7 @@ public class RSAUtil {
         // 2. 执行加密
         Cipher encryptCipher = Cipher.getInstance("RSA");
         encryptCipher.init(Cipher.ENCRYPT_MODE, privateKey);
-        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes());
+        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes(DEFAULT_CHARSET_UTF8));
 
         return encryptedBytes;
     }
@@ -100,7 +104,7 @@ public class RSAUtil {
         // 2. 执行加密
         Cipher encryptCipher = Cipher.getInstance("RSA");
         encryptCipher.init(Cipher.ENCRYPT_MODE, privateKey);
-        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes());
+        byte[] encryptedBytes = encryptCipher.doFinal(data.getBytes(DEFAULT_CHARSET_UTF8));
 
         // 3. Base64编码
         byte[] encodedBase64Bytes = Base64.getEncoder().encode(encryptedBytes);
@@ -120,7 +124,7 @@ public class RSAUtil {
         PublicKey publicKey = getPublicKey(base64PublicKey);
 
         // 2. Base64解码
-        byte[] decodeBase64Bytes = Base64.getDecoder().decode(encryptedData.getBytes());
+        byte[] decodeBase64Bytes = Base64.getDecoder().decode(encryptedData.getBytes(DEFAULT_CHARSET_UTF8));
 
         // 3. 解密
         Cipher decryptCipher = Cipher.getInstance("RSA");
@@ -142,7 +146,7 @@ public class RSAUtil {
         PrivateKey privateKey = getPrivateKey(base64PrivateKey);
 
         // 2. Base64解码
-        byte[] decodeBase64Bytes = Base64.getDecoder().decode(encryptedData.getBytes());
+        byte[] decodeBase64Bytes = Base64.getDecoder().decode(encryptedData.getBytes(DEFAULT_CHARSET_UTF8));
 
         // 3. 解密
         Cipher decryptCipher = Cipher.getInstance("RSA");

@@ -6,8 +6,8 @@ server:
 
 datasource:
   master:
-    driver: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test??useSSL=false&autoReconnect=true&sessionVariables=FOREIGN_KEY_CHECKS=0&useUnicode=yes&characterEncoding=UTF-8
+    driver: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.16.0.49:3306/cmp_list_2.0?useSSL=false&autoReconnect=true&sessionVariables=FOREIGN_KEY_CHECKS=0&useUnicode=yes&characterEncoding=UTF-8
     username: root
     password: 123456
     maxTotal: 200

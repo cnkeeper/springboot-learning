@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ public class UserRepository {
 
 
     public List<User> list() {
-        List<User> userList = new LinkedList<User>();
+        List<User> userList;
         SqlSession sqlSession = sqlSessionFactory.openSession();
         userList = sqlSession.selectList("mapper.UserMapper.list");
         return userList;

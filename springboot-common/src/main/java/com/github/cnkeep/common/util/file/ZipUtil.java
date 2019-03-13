@@ -68,6 +68,7 @@ public class ZipUtil {
                 e.printStackTrace();
             }
         });
+        zf.close();
     }
 
 
