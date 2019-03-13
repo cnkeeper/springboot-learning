@@ -1,0 +1,1 @@
+INSERT INTO `user`(id,NAME) VALUE(1,UUID());
