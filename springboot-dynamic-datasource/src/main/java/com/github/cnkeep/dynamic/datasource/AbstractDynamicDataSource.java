@@ -1,7 +1,5 @@
 package com.github.cnkeep.dynamic.datasource;
 
-import org.springframework.boot.jdbc.DataSourceBuilder;
-
 import javax.sql.DataSource;
 
 /**
