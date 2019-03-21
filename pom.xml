@@ -12,7 +12,7 @@
         <module>springboot-redis</module>
         <module>springboot-web</module>
         <module>springboot-mq</module>
-        <module>web</module>
+        <module>springboot-web-session</module>
         <module>springboot-common</module>
         <module>springboot-dynamic-datasource</module>
     </modules>

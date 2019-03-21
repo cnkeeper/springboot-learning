@@ -1,0 +1,28 @@
+server:
+  port: 9001
+  servlet:
+    application-display-name: web
+    context-path: /v1.0/service
+    session:
+      timeout: 30m
+
+# 日志设置
+logging:
+  config: classpath:logback.xml
+
+spring:
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://172.16.0.49:3306/cmp_list_2.0?useSSL=false&autoReconnect=true&sessionVariables=FOREIGN_KEY_CHECKS=0&useUnicode=yes&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  #redis设置
+  redis:
+    password: cnkeep
+    host: 172.16.22.135
+    port: 6379
+  #mvc配置
+  mvc:
+    view:
+      suffix: .html
