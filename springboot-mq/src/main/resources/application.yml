@@ -1,0 +1,4 @@
+
+# rocketmq 配置
+rocketmq:
+  nameserAddress: 172.16.22.135:9876

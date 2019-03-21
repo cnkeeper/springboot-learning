@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RedisTemplateHolder {
-    public static StringRedisTemplate REDIS_TEMPLATE;
+    static StringRedisTemplate REDIS_TEMPLATE;
 
     @Autowired
     public void setRedisTemplate(StringRedisTemplate redisTemplate){
