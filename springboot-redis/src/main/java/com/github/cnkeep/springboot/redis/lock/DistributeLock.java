@@ -1,4 +1,4 @@
-package com.github.cnkeep.springboot.redis.util;
+package com.github.cnkeep.springboot.redis.lock;
 
 import java.util.concurrent.TimeUnit;
 

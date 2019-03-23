@@ -1,6 +1,6 @@
 package com.github.cnkeep.springboot.redis;
 
-import com.github.cnkeep.springboot.redis.util.RedisLock;
+import com.github.cnkeep.springboot.redis.lock.RedisLock;
 import lombok.AllArgsConstructor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootRedisApplication.class)
-public class SpringbootRedisApplicationTests {
+public class LockApplicationTests {
 
     @Test
     public void contextLoads() throws InterruptedException {

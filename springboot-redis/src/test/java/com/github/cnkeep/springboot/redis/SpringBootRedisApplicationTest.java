@@ -13,16 +13,9 @@ import java.util.concurrent.Semaphore;
  * @date ${DATE}
  */
 @SpringBootApplication
-public class SpringBootRedisApplication {
+public class SpringBootRedisApplicationTest {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootRedisApplication.class, args);
-        Semaphore semaphore = new Semaphore(0);
-        try {
-            semaphore.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
-
 }
 

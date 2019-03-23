@@ -1,4 +1,4 @@
-package com.github.cnkeep.springboot.redis.util;
+package com.github.cnkeep.springboot.redis.lock;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
