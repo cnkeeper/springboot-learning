@@ -12,4 +12,3 @@ spring:
         min-idle: 1
         max-idle: 8
         max-active: 8
-

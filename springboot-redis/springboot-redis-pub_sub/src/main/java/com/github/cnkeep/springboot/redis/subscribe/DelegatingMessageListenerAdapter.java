@@ -27,7 +27,7 @@ public class DelegatingMessageListenerAdapter implements MessageListener {
         this.messageListenerAdapter = messageListenerAdapter;
         this.topic = topic;
         this.messageListenerAdapter.setSerializer(new GenericJackson2JsonRedisSerializer());
-        // 手动触发一次配置
+        // 手动触发一次配置, 生成MethodInvoker对象
         messageListenerAdapter.afterPropertiesSet();
     }
 

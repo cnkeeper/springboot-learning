@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
  * @date 2019/3/24
  */
 public abstract class AbstractRedisTemplateMessagePublisher<T> implements MessagePublisher<T> {
+
     @Override
     public void publish(T message) {
         redisTemplate().convertAndSend(topic().getTopic(), message);
@@ -17,6 +18,7 @@ public abstract class AbstractRedisTemplateMessagePublisher<T> implements Messag
 
     /**
      * inject RedisTemplate
+     * @return 返回RedisTemplate
      */
     protected abstract RedisTemplate redisTemplate();
 }

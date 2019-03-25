@@ -6,7 +6,8 @@ import org.springframework.data.redis.listener.Topic;
  * 描述: redis订阅消息监听器
  * <pre>
  *     {@code
- *     @Component
+ *
+ *     @ Component
  *      public class SubscribeMessageListenerTest implements SubscribeMessageListener {
  *          private static final Logger LOGGER = LoggerFactory.getLogger(SubscribeMessageListenerTest.class);
  *          private Topic topic = new PatternTopic("Topic");
