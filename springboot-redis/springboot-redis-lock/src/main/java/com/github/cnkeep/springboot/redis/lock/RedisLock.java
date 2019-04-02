@@ -4,7 +4,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.scripting.support.ResourceScriptSource;
-import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
@@ -14,14 +13,16 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 描述: 基于Redis的分布式锁，不可重入
+ * 采用的是简单的定时获取锁策略，不具有灵活性，不推荐，推荐
+ * @see MutexLock
  *
  * @author <a href="zhangleili924@gmail.com">LeiLi.Zhang</a>
  * @version 0.0.0
  * @date 2019/2/27
  */
-@Component
+@Deprecated
 public class RedisLock {
-    private final StringRedisTemplate template = RedisTemplateHolder.REDIS_TEMPLATE;
+    private final StringRedisTemplate template = RedisTemplateHolder.stringRedisTemplate();
     private String nodeTag;
 
     private String key;
@@ -36,9 +37,9 @@ public class RedisLock {
         this.key = "KEY_" + nodeTag;
     }
 
-    public RedisLock(String nodeTag) {
+    public RedisLock(String key) {
         this();
-        this.nodeTag = nodeTag;
+        this.key = key;
     }
 
     public RedisLock(String nodeTag, String key) {
@@ -99,10 +100,10 @@ public class RedisLock {
 
     public boolean release() {
         DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
-        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("release_lock.lua")));
+        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("mutex/unlock.lua")));
         redisScript.setResultType(Long.class);
 
-        Long result = template.execute(redisScript, Collections.singletonList(key), nodeTag, String.valueOf(10));
+        Long result = template.execute(redisScript, Collections.singletonList(key), nodeTag);
         return result == 0;
     }
 

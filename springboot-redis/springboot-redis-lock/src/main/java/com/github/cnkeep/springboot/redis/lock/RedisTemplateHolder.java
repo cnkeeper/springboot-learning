@@ -1,8 +1,13 @@
 package com.github.cnkeep.springboot.redis.lock;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import io.lettuce.core.AbstractRedisClient;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Field;
 
 /**
  * 描述~
@@ -11,12 +16,36 @@ import org.springframework.stereotype.Component;
  * @version 0.0.0
  * @date 2019/2/27
  */
-@Component
 public class RedisTemplateHolder {
-    static StringRedisTemplate REDIS_TEMPLATE;
+    private static StringRedisTemplate stringRedisTemplate;
+    private static RedisTemplate redisTemplate;
+    private static LettuceConnectionFactory redisConnectionFactory;
+    /** 监听通道*/
+    public static final String CHANNEL_PREFIX = "lock-channel:";
 
-    @Autowired
-    public void setRedisTemplate(StringRedisTemplate redisTemplate){
-        RedisTemplateHolder.REDIS_TEMPLATE = redisTemplate;
+    static {
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("172.16.22.135",6379);
+        redisConnectionFactory = new LettuceConnectionFactory(configuration);
+        redisConnectionFactory.afterPropertiesSet();
+
+        redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.afterPropertiesSet();
+
+        stringRedisTemplate = new StringRedisTemplate();
+        stringRedisTemplate.setConnectionFactory(redisConnectionFactory);
+        stringRedisTemplate.afterPropertiesSet();
+    }
+
+    public static RedisTemplate<Object, Object> redisTemplate() {
+        return redisTemplate;
+    }
+
+    public static StringRedisTemplate stringRedisTemplate() {
+        return stringRedisTemplate;
+    }
+
+    public static RedisConnection connection(){
+        return redisConnectionFactory.getConnection();
     }
 }
