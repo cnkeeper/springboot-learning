@@ -1,6 +1,6 @@
 package com.github.cnkeep.web.util.codec;
 
-import com.github.cnkeep.common.util.codec.Base64Util;
+import com.github.cnkeep.common.test.util.codec.Base64Util;
 import org.junit.Assert;
 import org.junit.Test;
 
