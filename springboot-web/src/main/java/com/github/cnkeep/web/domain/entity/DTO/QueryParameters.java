@@ -1,6 +1,6 @@
 package com.github.cnkeep.web.domain.entity.DTO;
 
-import com.github.cnkeep.common.test.util.StringUtil;
+import com.github.cnkeep.common.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;

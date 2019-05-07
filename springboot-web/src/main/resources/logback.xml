@@ -103,7 +103,7 @@
     <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
     <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" value="DEBUG" />
 
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="DEBUG_FILE"/>
         <appender-ref ref="INFO_FILE"/>

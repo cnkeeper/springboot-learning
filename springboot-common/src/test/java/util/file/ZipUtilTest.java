@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.MessageFormat;
 
 public class ZipUtilTest {
 
@@ -26,4 +27,11 @@ public class ZipUtilTest {
         System.out.println(path.replace(root,""));
     }
 
+    @Test
+    public void test(){
+        long currentTimeMillis = System.currentTimeMillis();
+        System.out.println(currentTimeMillis);
+        String binaryString = Long.toBinaryString(currentTimeMillis);
+        System.out.println(MessageFormat.format("time:{0}, \n binaryStr:{1}, \n len={2}",currentTimeMillis,binaryString,binaryString.length()));
+    }
 }

@@ -1,7 +1,7 @@
 package com.github.cnkeep.web.util.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.cnkeep.common.test.util.json.JsonUtil;
+import com.github.cnkeep.common.util.json.JsonUtil;
 import com.github.cnkeep.web.util.entity.JsonEntity;
 import org.junit.Test;
 

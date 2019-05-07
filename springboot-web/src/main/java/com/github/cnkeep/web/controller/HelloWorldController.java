@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.ws.rs.core.Context;
 
 /**
  * 测试 springmvc
@@ -24,7 +26,9 @@ public class HelloWorldController {
     @RequestMapping(path = "/test", method = RequestMethod.POST)
     @GetMapping(path = "test",consumes= MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public User hello(@RequestBody @Valid User user) {
+    public User hello(@Context HttpServletRequest request,@RequestBody @Valid User user) {
+        String userAgent = request.getHeader("User-Agent");
+        LOGGER.info("user-agent:{}",userAgent);
         LOGGER.info("info.....");
         LOGGER.warn("warnning....");
         LOGGER.error("error......");

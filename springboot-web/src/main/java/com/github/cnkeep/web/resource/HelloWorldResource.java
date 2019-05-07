@@ -9,10 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.impl.StaticLoggerBinder;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
@@ -48,7 +50,9 @@ public class HelloWorldResource {
 
     @GET
     @Path("success")
-    public Response success() {
+    public Response success(@Context HttpServletRequest request) {
+        String userAgent = request.getHeader("User-Agent");
+        logger.info("user-agent:{}",userAgent);
         logger.info("info...");
         logger.warn("warn.....");
         logger.error("error......");
