@@ -26,11 +26,12 @@ import java.util.concurrent.locks.Lock;
  *     ## 不足
  *     1. 不支持重入
  *     2. 假如本地任务耗时长，执行期间锁无法自动续约
+ *     3. 未剔除依赖，强依赖于spring-data-redis(暂时可以忽略，后期提供redis协议客户端)
  *
  *
  *
  *     ##使用
- *     Lock lock = new MutexLock("lock-id");
+ *     Lock lock = new MutexDistributeLock("lock-id");
  *     lock.lock();
  *     try{
  *         //do something
@@ -43,11 +44,11 @@ import java.util.concurrent.locks.Lock;
  * @Version 0.0.0
  * @Date 2019/3/21
  */
-public class MutexLock implements Lock {
+public class MutexDistributeLock implements Lock {
     /**
      * Logger
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(MutexLock.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MutexDistributeLock.class);
 
     private final StringRedisTemplate template = RedisTemplateHolder.stringRedisTemplate();
     private static DefaultRedisScript<Long> unlockScript;
@@ -84,20 +85,21 @@ public class MutexLock implements Lock {
 
     /**
      * 锁标识
+     *
      * @param key
      */
-    public MutexLock(String key) {
+    public MutexDistributeLock(String key) {
         this.key = buildKey(key);
         init();
     }
 
     /**
-     * @param key 锁标识
-     * @param lockTime 加锁时长，单位：s
+     * @param key      锁标识
+     * @param holeLockTime 加锁时长，单位：s
      */
-    public MutexLock(String key, long lockTime) {
+    public MutexDistributeLock(String key, long holeLockTime) {
         this.key = buildKey(key);
-        this.lockTime = lockTime;
+        this.lockTime = holeLockTime;
         init();
     }
 
@@ -207,7 +209,7 @@ public class MutexLock implements Lock {
     public void unlock() {
         Long result = template.execute(unlockScript, Collections.singletonList(key), nodeTag);
         if (0 != result) {
-            throw new RuntimeException(MessageFormat.format("Error to release lock[{0}], this node[{1}] is not Lock's owner!",key,nodeTag));
+            throw new RuntimeException(MessageFormat.format("Error to release lock[{0}], this node[{1}] is not Lock's owner!", key, nodeTag));
         }
         // notify all of node can try to get lock
         RedisTemplateHolder.connection().publish(channel, "release".getBytes());

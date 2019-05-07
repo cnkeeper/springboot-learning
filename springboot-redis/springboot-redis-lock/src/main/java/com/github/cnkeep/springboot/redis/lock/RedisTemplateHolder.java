@@ -1,13 +1,9 @@
 package com.github.cnkeep.springboot.redis.lock;
 
-import io.lettuce.core.AbstractRedisClient;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-
-import java.lang.reflect.Field;
 
 /**
  * 描述~
@@ -16,36 +12,29 @@ import java.lang.reflect.Field;
  * @version 0.0.0
  * @date 2019/2/27
  */
-public class RedisTemplateHolder {
-    private static StringRedisTemplate stringRedisTemplate;
-    private static RedisTemplate redisTemplate;
-    private static LettuceConnectionFactory redisConnectionFactory;
-    /** 监听通道*/
-    public static final String CHANNEL_PREFIX = "lock-channel:";
+public final class RedisTemplateHolder {
+    private static RedisTemplateFactory redisTemplateFactory;
+    /**
+     * 监听通道
+     */
+    public static final String CHANNEL_PREFIX = LettuceRedisTemplateFactory.CHANNEL_PREFIX;
+
+    private RedisTemplateHolder() {}
 
     static {
-        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("172.16.22.135",6379);
-        redisConnectionFactory = new LettuceConnectionFactory(configuration);
-        redisConnectionFactory.afterPropertiesSet();
-
-        redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
-        redisTemplate.afterPropertiesSet();
-
-        stringRedisTemplate = new StringRedisTemplate();
-        stringRedisTemplate.setConnectionFactory(redisConnectionFactory);
-        stringRedisTemplate.afterPropertiesSet();
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("172.16.22.135", 6379);
+        redisTemplateFactory = new LettuceRedisTemplateFactory(configuration);
     }
 
-    public static RedisTemplate<Object, Object> redisTemplate() {
-        return redisTemplate;
+    public final static RedisTemplate<Object, Object> redisTemplate() {
+        return redisTemplateFactory.redisTemplate();
     }
 
-    public static StringRedisTemplate stringRedisTemplate() {
-        return stringRedisTemplate;
+    public final static StringRedisTemplate stringRedisTemplate() {
+        return redisTemplateFactory.stringRedisTemplate();
     }
 
-    public static RedisConnection connection(){
-        return redisConnectionFactory.getConnection();
+    public final static RedisConnection connection() {
+        return redisTemplateFactory.connection();
     }
 }

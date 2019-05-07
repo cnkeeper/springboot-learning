@@ -1,17 +1,15 @@
 package com.github.cnkeep.springboot.redis.lock;
 
-import org.junit.Test;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
-public class MutexLockTest {
+public class MutexDistributeLockTest {
     public static void main(String[] args) {
         String key = "Job";
         Runnable task1 = () -> {
-            Lock lock = new MutexLock(key);
+            Lock lock = new MutexDistributeLock(key);
 
             try {
                 boolean locked = lock.tryLock(2, TimeUnit.SECONDS);

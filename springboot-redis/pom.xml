@@ -7,6 +7,7 @@
 		<module>springboot-redis-pub_sub</module>
 		<module>springboot-redis-samples</module>
 		<module>springboot-redis-lock</module>
+		<module>springboot-redis-protocol</module>
 	</modules>
 	<parent>
 		<groupId>com.cnkeep</groupId>

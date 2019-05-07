@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 描述: 基于Redis的分布式锁，不可重入
  * 采用的是简单的定时获取锁策略，不具有灵活性，不推荐，推荐
- * @see MutexLock
+ * @see MutexDistributeLock
  *
  * @author <a href="zhangleili924@gmail.com">LeiLi.Zhang</a>
  * @version 0.0.0
