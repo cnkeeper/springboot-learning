@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @description: websocket通用请求体
- * @author: <a href="mailto:zhangleili@lizhi.fm">LeiLi.Zhang</a>
+ * @author: <a href="zhangleili924@gmail.com">LeiLi.Zhang</a>
  * @date: 2019-09-03
  * @version: v1.1.8
  **/

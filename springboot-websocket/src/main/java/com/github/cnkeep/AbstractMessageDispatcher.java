@@ -7,7 +7,7 @@ import javax.websocket.*;
 
 /**
  * @description:  通用消息处理器，自定义的处理器继承该类实现方法即可
- * @author: <a href="mailto:zhangleili@lizhi.fm">LeiLi.Zhang</a>
+ * @author: <a href="zhangleili924@gmail.com">LeiLi.Zhang</a>
  * @date: 2019-09-05
  * @version: v1.1.8
  **/

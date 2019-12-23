@@ -14,7 +14,7 @@ import java.util.Objects;
 
 /**
  * @description: websocket消息处理器
- * @author: <a href="mailto:zhangleili@lizhi.fm">LeiLi.Zhang</a>
+ * @author: <a href="zhangleili924@gmail.com">LeiLi.Zhang</a>
  * @date: 2019-09-04
  * @version: v1.1.8
  **/

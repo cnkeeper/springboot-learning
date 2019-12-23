@@ -2,7 +2,7 @@ package com.github.cnkeep.common.util.designmodel.strategy;
 
 /**
  * @description:
- * @author: <a href="mailto:zhangleili@lizhi.fm">LeiLi.Zhang</a>
+ * @author: <a href="zhangleili924@gmail.com">LeiLi.Zhang</a>
  * @date: 2019-11-19
  * @version:
  **/
