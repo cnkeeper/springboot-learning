@@ -24,7 +24,7 @@ public abstract class AbstractBaseHandlerFactory<T, H> implements HandlerFactory
     @Override
     public void register(T type, H handler) {
         Objects.requireNonNull(type, "type can not be null!");
-        Objects.requireNonNull(handler, "handler can not be null!");
+        Objects.requireNonNull(handler, "com.github.cnkeep.handler can not be null!");
         HANDLERS_MAP.put(type, handler);
     }
 
