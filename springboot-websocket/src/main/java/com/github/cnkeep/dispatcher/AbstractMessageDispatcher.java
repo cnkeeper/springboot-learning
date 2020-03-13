@@ -1,9 +1,11 @@
-package com.github.cnkeep;
+package com.github.cnkeep.dispatcher;
 
 import com.alibaba.fastjson.JSON;
+import com.github.cnkeep.Dispatcher;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.websocket.*;
+import java.util.Objects;
 
 /**
  * @description:  通用消息处理器，自定义的处理器继承该类实现方法即可
@@ -12,7 +14,7 @@ import javax.websocket.*;
  * @version: v1.1.8
  **/
 @Slf4j
-public abstract class AbstractMessageDispatcher {
+public abstract class AbstractMessageDispatcher<R> implements Dispatcher<R> {
 
     /**
      * Ws连接建立。
@@ -28,7 +30,11 @@ public abstract class AbstractMessageDispatcher {
     @OnMessage
     public void onMessage(String message, Session session) {
         log.info("onMessage sessionId:{}, message:{}", session.getId(), message);
-        GeneralWebSocketResponse response = dispatcher(session, message);
+        R response = dispatcher(session, message);
+
+        if(Objects.isNull(response)){
+            return;
+        }
 
         try {
             session.getBasicRemote().sendText(JSON.toJSONString(response));
@@ -36,14 +42,6 @@ public abstract class AbstractMessageDispatcher {
             log.error("error to send Message[{}]",response);
         }
     }
-
-    /**
-     * 消息分发处理逻辑
-     * @param session
-     * @param message
-     * @return
-     */
-    protected abstract GeneralWebSocketResponse dispatcher(Session session, String message);
 
     /**
      * Ws连接关闭。

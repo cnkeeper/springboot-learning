@@ -1,5 +1,9 @@
-package com.github.cnkeep;
+package com.github.cnkeep.support.spring;
 
+import com.github.cnkeep.MessageHandler;
+import com.github.cnkeep.MessageInterceptor;
+import com.github.cnkeep.MessageType;
+import com.github.cnkeep.WsApplicationContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -7,10 +11,10 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @description: SpringApplicationContext
@@ -20,8 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 @Component
 @Slf4j
-public class ApplicationContextHolder implements ApplicationContextAware {
-    private static List<MessageInterceptor> wsMessageInterceptors = new LinkedList<>();
+public class SpringWsApplicationContext implements ApplicationContextAware, WsApplicationContext {
+    private static List<MessageInterceptor> wsMessageInterceptors = new CopyOnWriteArrayList<>();
     private static Map<MessageType, MessageHandler> wsHandlerMap = new ConcurrentHashMap<>();
 
     @Override
@@ -54,6 +58,31 @@ public class ApplicationContextHolder implements ApplicationContextAware {
     }
 
     public static List<MessageInterceptor> getWsMessageInterceptors() {
+        return wsMessageInterceptors;
+    }
+
+    @Override
+    public void registerMessageHandler(MessageHandler messageHandler) {
+        wsHandlerMap.put(messageHandler.acceptType(), messageHandler);
+    }
+
+    @Override
+    public void registerMessageInterceptor(MessageInterceptor messageInterceptor) {
+        wsMessageInterceptors.add(messageInterceptor);
+    }
+
+    @Override
+    public MessageHandler getMessageHandler(MessageType messageType) {
+        return wsHandlerMap.get(messageType);
+    }
+
+    @Override
+    public Map<MessageType, MessageHandler> getMessageHandlerMap() {
+        return wsHandlerMap;
+    }
+
+    @Override
+    public List<MessageInterceptor> getMessageInterceptorList() {
         return wsMessageInterceptors;
     }
 }
