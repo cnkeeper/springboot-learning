@@ -1,8 +1,10 @@
 package com.github.cnkeep.springboot.redis.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
@@ -19,7 +21,18 @@ import java.io.Serializable;
  * @Date 2019/3/22
  */
 @Configuration
+@Order(value = 1)
 public class RedisConfiguration {
+    public RedisConfiguration() {
+        System.out.println(this.getClass());
+    }
+
+    @Bean(name = "testCondition1")
+    @ConditionalOnMissingBean(name = "testCondition")
+    public Object testCondition(){
+        return new Object();
+    }
+
     @Bean
     public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Serializable> template = new RedisTemplate<>();

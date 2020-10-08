@@ -19,6 +19,10 @@ public class CustomizeConfigurationByConfigurationProperty {
      */
     public static String version;
 
+    public CustomizeConfigurationByConfigurationProperty() {
+        System.out.println(this.getClass());
+    }
+
     /**
      * 依赖注入自定义的配置文件，不存在时默认值为hp
      **/

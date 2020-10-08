@@ -12,6 +12,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "project")
 public class CustomizeConfigurationByPropertySource {
+    public CustomizeConfigurationByPropertySource() {
+        System.out.println(this.getClass());
+    }
+
     /*spring不支持静态属性的注入,因为静态属性属于类变量，而spring是基于对象的*/
     public static String author;
 

@@ -34,6 +34,10 @@ public class MasterDataSourceConfig {
     @Autowired
     private MasterDsConfig config;
 
+    public MasterDataSourceConfig() {
+        System.out.println(this.getClass());
+    }
+
     @Bean("masterDataSource")
     public DataSource masterDataSource() {
         DruidDataSource dataSource = (DruidDataSource) DataSourceBuilder.create().type(DruidDataSource.class).build();

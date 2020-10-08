@@ -20,6 +20,9 @@ import javax.ws.rs.core.Context;
 @RestController
 @RequestMapping(path = "hello")
 public class HelloWorldController {
+    public HelloWorldController() {
+        System.out.println(this.getClass());
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
 

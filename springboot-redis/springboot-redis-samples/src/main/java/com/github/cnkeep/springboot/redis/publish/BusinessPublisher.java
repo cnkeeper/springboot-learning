@@ -19,6 +19,10 @@ public class BusinessPublisher extends AbstractRedisTemplateMessagePublisher {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    public BusinessPublisher() {
+        System.out.println(this.getClass());
+    }
+
     @Override
     public RedisTemplate redisTemplate() {
         return redisTemplate;
