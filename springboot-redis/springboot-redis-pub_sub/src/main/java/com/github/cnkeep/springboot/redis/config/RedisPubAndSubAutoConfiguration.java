@@ -31,6 +31,10 @@ import java.util.stream.Collectors;
 @ConditionalOnClass({RedisConnectionFactory.class})
 public class RedisPubAndSubAutoConfiguration implements ApplicationContextAware,InitializingBean{
 
+    public RedisPubAndSubAutoConfiguration() {
+        throw new RuntimeException();
+    }
+
     @Bean
     @ConditionalOnMissingBean({RedisConnectionFactory.class,RedisMessageListenerContainer.class})
     public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory) {
